@@ -6,6 +6,10 @@ class auditd::params {
     $package_name = 'audit'
     $service_name = 'auditd'
   }
+  elsif $facts['os']['name'] in ['Debian','Ubuntu'] {
+    $package_name = 'auditd'
+    $service_name = 'auditd'
+  }
   else {
     fail("${facts['os']['name']} not supported")
   }

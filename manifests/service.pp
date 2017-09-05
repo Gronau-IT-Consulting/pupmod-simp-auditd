@@ -15,6 +15,16 @@ class auditd::service {
         provider   => 'redhat'
       }
     }
+    'Debian','Ubuntu' : {
+      # CCE-27058-7
+      service { $::auditd::service_name:
+        ensure     => 'running',
+        enable     => true,
+        hasrestart => true,
+        hasstatus  => true,
+        provider   => 'debian'
+      }
+    }
     default : {
       fail("Error: ${facts['os']['name']} is not yet supported by module '${module_name}'")
     }
